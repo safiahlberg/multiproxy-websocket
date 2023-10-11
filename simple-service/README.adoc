@@ -1,18 +1,21 @@
 = Simple test service with simulated delay
 
 This project contains one single service, but it can be reused
-to simulate multiple endpoints. The service has an input for a simultated delay (to simulate that different
-services have different qualities when it comes to response time). The  link:../simple-service[``simple-service``] module
-also has a webpage that can act as a client.
+to simulate multiple endpoints. The service has an input for a
+simulated delay (to simulate that different services have
+different qualities when it comes to response time). The
+link:../simple-service[``simple-service``] module
+also has a webpage that can act as a client which can be reached
+on http://localhost:8082.
 
 The service is a regular REST service, and responds on the
 URL http://localhost:8082/service and it requires 3 request
 parameters
 
-. queryString - The textual representation of input data, this
+. ``queryString`` - The textual representation of input data, this
 is echoed back
-. instNo - The name of the endpoint (since we can emulate multiple endpoints)
-. delay - A value for simulated delay
+. ``instNo`` - The name of the endpoint (since we can emulate multiple endpoints)
+. ``delay`` - A value for simulated delay
 
 == Run
 To test this service, you can start the service via

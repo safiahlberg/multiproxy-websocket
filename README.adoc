@@ -1,6 +1,10 @@
 = Multi-Proxy with websocket asynchronous responses
 
-A project with 2 modules.
+This is a project that is a test example of a proxy service
+that multiplexes incoming requests and distributes those
+to multiple endpoints. It then responds back to the client
+via a WebSocket, asynchronusly and immediately when responses
+from the endpoints arrive. The project has 2 modules.
 
 == link:websocket-service[websocket-service]
 Provides a Multi-Proxy service that sends an incoming
