@@ -1,0 +1,19 @@
+= WebSocket Service
+
+Test proxy service that multiplexes incoming requests to multiple services, then
+responds asynchronously via a web socket as soon as the services respond.
+
+It has a list of simulated endpoints (simulated services, with simulated delays),
+the class link:src/main/java/com/wixia/websocket/MultiProxyWebSocketHandler.java[MultiProxyWebSocketHandler] implements
+a handler for the web socket and accepts incoming web socket connections.
+
+This project is dependent on another project (or several others) to implement some
+kind of service. There is an example project that can act as a service to this
+project in the module link:../simple-service[``simple-service``].
+
+== Run
+To test this service, you can start the service via
+[source,shell]
+-----
+mvn spring-boot:run
+-----

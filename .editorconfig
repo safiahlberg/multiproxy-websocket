@@ -1,0 +1,54 @@
+# http://EditorConfig.org
+
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+indent_style = space
+indent_size = 4
+tab_width = 4
+max_line_length = 120
+
+[*.java]
+ij_java_align_multiline_extends_list = true
+ij_java_align_multiline_parameters = true
+ij_java_align_multiline_parameters_in_calls = true
+ij_java_align_multiline_throws_list = true
+ij_java_call_parameters_wrap = on_every_item
+ij_java_imports_layout = se.gov.**, |, *, |, javax.**, jakarta.**, java.**, |, $*
+ij_java_method_parameters_wrap = on_every_item
+
+[*.properties]
+ij_properties_keep_blank_lines = true
+ij_properties_spaces_around_key_value_delimiter = true
+
+[{*.ant,*.fxml,*.jhm,*.jnlp,*.jrxml,*.pom,*.qrc,*.rng,*.tld,*.wadl,*.wsdd,*.wsdl,*.xjb,*.xml,*.xsd,*.xsl,*.xslt,*.xul}]
+# https://www.jetbrains.com/help/resharper/EditorConfig_XML_XmlCodeStylePageSchema.html#resharper_xml_linebreaks_inside_tags_for_multiline_elements
+ij_xml_linebreaks_inside_tags_for_multiline_elements = false
+# The only config that differs from IntelliJ's defaults
+ij_xml_keep_whitespaces_inside_cdata = true
+# The IntelliJ defaults
+ij_xml_align_attributes = true
+ij_xml_align_text = false
+ij_xml_attribute_wrap = normal
+ij_xml_block_comment_add_space = false
+ij_xml_block_comment_at_first_column = true
+ij_xml_keep_blank_lines = 2
+ij_xml_keep_indents_on_empty_lines = false
+ij_xml_keep_line_breaks = true
+ij_xml_keep_line_breaks_in_text = true
+ij_xml_keep_whitespaces = false
+ij_xml_keep_whitespaces_around_cdata = preserve
+## ij_xml_keep_whitespaces_inside_cdata = false
+ij_xml_line_comment_at_first_column = true
+ij_xml_space_after_tag_name = false
+ij_xml_space_around_equals_in_attribute = false
+ij_xml_space_inside_empty_tag = false
+ij_xml_text_wrap = normal
+ij_xml_use_custom_settings = false
+
+[{*.yaml,*.yml}]
+indent_size = 2
