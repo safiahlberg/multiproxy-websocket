@@ -22,20 +22,22 @@ public class MultiProxyWebSocketHandler implements WebSocketHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MultiProxyWebSocketHandler.class);
 
+    private static final String SERVICE_HOST = "http://localhost:8082/service";
+
     private final ObjectMapper objectMapper;
 
     private final
     Flux<ServiceInfo> simulatedEndpoints = Flux.just(
-        new ServiceInfo("http://localhost:8082/service", "A", 6),
-        new ServiceInfo("http://localhost:8082/service", "B", 13),
-        new ServiceInfo("http://localhost:8082/service", "C", 3),
-        new ServiceInfo("http://localhost:8082/service", "D", 24),
-        new ServiceInfo("http://localhost:8082/service", "E", 8),
-        new ServiceInfo("http://localhost:8082/service", "F", 2),
-        new ServiceInfo("http://localhost:8082/service", "G", 7),
-        new ServiceInfo("http://localhost:8082/service", "H", 19),
-        new ServiceInfo("http://localhost:8082/service", "I", 27),
-        new ServiceInfo("http://localhost:8082/service", "J", 4));
+        new ServiceInfo(SERVICE_HOST, "A", 6),
+        new ServiceInfo(SERVICE_HOST, "B", 13),
+        new ServiceInfo(SERVICE_HOST, "C", 3),
+        new ServiceInfo(SERVICE_HOST, "D", 24),
+        new ServiceInfo(SERVICE_HOST, "E", 8),
+        new ServiceInfo(SERVICE_HOST, "F", 2),
+        new ServiceInfo(SERVICE_HOST, "G", 7),
+        new ServiceInfo(SERVICE_HOST, "H", 19),
+        new ServiceInfo(SERVICE_HOST, "I", 27),
+        new ServiceInfo(SERVICE_HOST, "J", 4));
 
 
     @Override
@@ -58,11 +60,10 @@ public class MultiProxyWebSocketHandler implements WebSocketHandler {
                     .flatMap(serviceInfo -> queryService(queryRequest.queryContent(), serviceInfo))
             )
             .map(this::readIncomingResponse)
-            .doOnNext(queryResponseMessage -> {
-                executor.execute(() -> {
-                    sinks.emitNext(queryResponseMessage, Sinks.EmitFailureHandler.FAIL_FAST);
-                });
-            })
+            .doOnNext(queryResponseMessage ->
+                          executor.execute(() ->
+                                               sinks.emitNext(
+                                                   queryResponseMessage, Sinks.EmitFailureHandler.FAIL_FAST)))
             .doOnError(error -> sinks.emitError(error, Sinks.EmitFailureHandler.FAIL_FAST));
 
         // ======================================================================================================= //
@@ -79,7 +80,6 @@ public class MultiProxyWebSocketHandler implements WebSocketHandler {
             .then();
 
         return Mono.zip(serviceResponses.then(), sendMono).then();
-//        return sendMono;
     }
 
     private Mono<String> queryService(String inputData,
