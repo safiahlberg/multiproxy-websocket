@@ -46,6 +46,8 @@ public class MultiProxyWebSocketHandler implements WebSocketHandler {
         final ExecutorService executor = Executors.newSingleThreadExecutor();
 
         LOGGER.info("Handle web socket session");
+        // ======================================================================================================= //
+        // This is for receiving the input from the websocket and sending out the requests to the endpoints
         Flux<QueryResponseMessage> serviceResponses = webSocketSession
             .receive()
             .map(WebSocketMessage::getPayloadAsText)
@@ -63,6 +65,8 @@ public class MultiProxyWebSocketHandler implements WebSocketHandler {
             })
             .doOnError(error -> sinks.emitError(error, Sinks.EmitFailureHandler.FAIL_FAST));
 
+        // ======================================================================================================= //
+        // This is for handling the responses from the endpoints and forwarding them to the websocket return channel
         Mono<Void> sendMono = webSocketSession
             .send(
                 Mono.delay(Duration.ofMillis(500))
