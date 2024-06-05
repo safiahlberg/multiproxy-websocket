@@ -3,7 +3,6 @@ package com.wixia.websocket;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -42,7 +41,7 @@ public class MultiProxyWebSocketHandler implements WebSocketHandler {
 
 
     @Override
-    public @NotNull Mono<Void> handle(@NotNull WebSocketSession webSocketSession) {
+    public Mono<Void> handle(WebSocketSession webSocketSession) {
 
         Sinks.Many<QueryResponseMessage> sinks = Sinks.many().replay().limit(Duration.ZERO);
         Flux<QueryResponseMessage> outputMessages = sinks.asFlux();
