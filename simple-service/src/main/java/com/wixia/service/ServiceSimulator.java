@@ -21,10 +21,7 @@ public class ServiceSimulator {
         Thread.sleep(1000L * delay);
 
         QueryResponseMessage queryResponseMessage = new QueryResponseMessage(
-            new StringBuilder(queryString).
-                append(", service name: %s, virtual delay: %d".formatted(
-                    instNo,
-                    delay)).toString());
+            String.format("%s, service name: %s, virtual delay: %d", queryString, instNo, delay));
 
         LOGGER.info("Service {} response: {}",
                     instNo, queryResponseMessage.responseContent());
