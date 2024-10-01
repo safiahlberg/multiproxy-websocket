@@ -9,7 +9,7 @@ also has a webpage that can act as a client which can be reached
 on http://localhost:8082.
 
 The service is a regular REST service, and responds on the
-URL http://localhost:8082/service and it requires 3 request
+URL http://localhost:8082/service, and it requires 3 request
 parameters
 
 . ``queryString`` - The textual representation of input data, this
