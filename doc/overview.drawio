@@ -1,13 +1,13 @@
-<mxfile host="Electron" modified="2023-10-11T18:06:53.383Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="gYblyYEkNfBtCYwEUSHI" version="22.0.2" type="device">
+<mxfile host="app.diagrams.net" modified="2024-10-01T11:54:59.536Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0" etag="fHCqCwEbTSHD3VNYUGn4" version="22.1.16" type="device">
   <diagram name="Page-1" id="tIeLX0yl_slDZ5uJgdXL">
-    <mxGraphModel dx="1032" dy="727" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1338" dy="1101" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="8Jmt7_JognzGk3KENm8h-20" value="simple-service" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#999999;fontColor=#666666;fontSize=10;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="500" y="230" width="120" height="250" as="geometry" />
         </mxCell>
-        <mxCell id="8Jmt7_JognzGk3KENm8h-19" value="simple-service" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#999999;fontColor=#666666;fontSize=10;fontFamily=Helvetica;" parent="1" vertex="1">
+        <mxCell id="8Jmt7_JognzGk3KENm8h-19" value="Client Service" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#999999;fontColor=#666666;fontSize=10;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="100" y="230" width="120" height="250" as="geometry" />
         </mxCell>
         <mxCell id="8Jmt7_JognzGk3KENm8h-18" value="websocket-service" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#999999;fontColor=#666666;fontSize=10;fontFamily=Helvetica;" parent="1" vertex="1">
