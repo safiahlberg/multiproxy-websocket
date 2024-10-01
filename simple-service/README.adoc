@@ -3,10 +3,7 @@
 This project contains one single service, but it can be reused
 to simulate multiple endpoints. The service has an input for a
 simulated delay (to simulate that different services have
-different qualities when it comes to response time). The
-link:../simple-service[``simple-service``] module
-also has a webpage that can act as a client which can be reached
-on http://localhost:8082.
+different qualities when it comes to response time).
 
 The service is a regular REST service, and responds on the
 URL http://localhost:8082/service, and it requires 3 request
@@ -23,3 +20,9 @@ To test this service, you can start the service via
 -----
 mvn spring-boot:run
 -----
+
+== Simple web application
+The
+link:../simple-service[``simple-service``] module
+also has a webpage that can act as a client which can be reached
+on http://localhost:8082.
