@@ -13,18 +13,18 @@ public class ServiceSimulator {
 
     @GetMapping("/service")
     public QueryResponseMessage query(@RequestParam(value = "querystring") String queryString,
-                                      @RequestParam(value = "instno") String instNo,
+                                      @RequestParam(value = "servicename") String serviceName,
                                       @RequestParam(value = "delay") int delay) throws InterruptedException {
 
-        LOGGER.info("Service {} receiving:: {}", instNo, queryString);
+        LOGGER.info("Service {} receiving:: {}", serviceName, queryString);
 
         Thread.sleep(1000L * delay);
 
         QueryResponseMessage queryResponseMessage = new QueryResponseMessage(
-            String.format("%s, service name: %s, virtual delay: %d", queryString, instNo, delay));
+            String.format("%s, service name: %s, virtual delay: %d", queryString, serviceName, delay));
 
         LOGGER.info("Service {} response: {}",
-                    instNo, queryResponseMessage.responseContent());
+                    serviceName, queryResponseMessage.responseContent());
 
         return queryResponseMessage;
     }

@@ -11,7 +11,7 @@ parameters
 
 . ``queryString`` - The textual representation of input data, this
 is echoed back
-. ``instNo`` - The name of the endpoint (since we can emulate multiple endpoints)
+. ``serviceName`` - The name of the service (since we can emulate multiple services)
 . ``delay`` - A value for simulated delay
 
 == Run

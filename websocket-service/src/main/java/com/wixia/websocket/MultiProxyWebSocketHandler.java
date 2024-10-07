@@ -88,7 +88,7 @@ public class MultiProxyWebSocketHandler implements WebSocketHandler {
             .get()
             .uri(uriBuilder -> uriBuilder
                 .queryParam("querystring", inputData)
-                .queryParam("instno", serviceInfo.instNo())
+                .queryParam("servicename", serviceInfo.serviceName())
                 .queryParam("delay", serviceInfo.simulatedDelay())
                 .build())
             .retrieve()
