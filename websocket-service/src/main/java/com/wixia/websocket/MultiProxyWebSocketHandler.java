@@ -45,26 +45,28 @@ public class MultiProxyWebSocketHandler implements WebSocketHandler {
 
         Sinks.Many<QueryResponseMessage> sinks = Sinks.many().replay().limit(Duration.ZERO);
         Flux<QueryResponseMessage> outputMessages = sinks.asFlux();
-        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        Flux<QueryResponseMessage> serviceResponses;
+        try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
 
-        LOGGER.info("Handle web socket session");
-        // ======================================================================================================= //
-        // This is for receiving the input from the websocket and sending out the requests to the endpoints
-        Flux<QueryResponseMessage> serviceResponses = webSocketSession
-            .receive()
-            .map(WebSocketMessage::getPayloadAsText)
-            .map(this::readIncomingMessage)
-            .log("server receiving::")
-            .flatMap(
-                queryRequest -> simulatedEndpoints
-                    .flatMap(serviceInfo -> queryService(queryRequest.queryContent(), serviceInfo))
-            )
-            .map(this::readIncomingResponse)
-            .doOnNext(queryResponseMessage ->
-                          executor.execute(() ->
-                                               sinks.emitNext(
-                                                   queryResponseMessage, Sinks.EmitFailureHandler.FAIL_FAST)))
-            .doOnError(error -> sinks.emitError(error, Sinks.EmitFailureHandler.FAIL_FAST));
+            LOGGER.info("Handle web socket session");
+            // ======================================================================================================= //
+            // This is for receiving the input from the websocket and sending out the requests to the endpoints
+            serviceResponses = webSocketSession
+                .receive()
+                .map(WebSocketMessage::getPayloadAsText)
+                .map(this::readIncomingMessage)
+                .log("server receiving::")
+                .flatMap(
+                    queryRequest -> simulatedEndpoints
+                        .flatMap(serviceInfo -> queryService(queryRequest.queryContent(), serviceInfo))
+                )
+                .map(this::readIncomingResponse)
+                .doOnNext(queryResponseMessage ->
+                              executor.execute(() ->
+                                                   sinks.emitNext(
+                                                       queryResponseMessage, Sinks.EmitFailureHandler.FAIL_FAST)))
+                .doOnError(error -> sinks.emitError(error, Sinks.EmitFailureHandler.FAIL_FAST));
+        }
 
         // ======================================================================================================= //
         // This is for handling the responses from the endpoints and forwarding them to the websocket return channel
